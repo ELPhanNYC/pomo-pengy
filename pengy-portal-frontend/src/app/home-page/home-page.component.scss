@@ -1,0 +1,13 @@
+.components-left{
+    width: 50%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.components-right {
+    width: 50%;
+    float: right;
+}

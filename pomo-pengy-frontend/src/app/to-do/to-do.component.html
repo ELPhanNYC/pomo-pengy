@@ -13,13 +13,13 @@
     </div>
     <div class = "task-add-button" (click)="displayForm()"><h2>+</h2></div>
     <div class = "temp-container task-item" style="display: none;">
-        <label for="taskTitle">Task Title:</label>
+        <label for="title">Task Title:</label>
         <!-- Ignore the errors -->
         <input type="text" id="title" [(ngModel)]="newTask.title" />
         <br>
-        <label for="dueDate">Due Date:</label>
+        <label for="date">Due Date:</label>
         <!-- Ignore the errors -->
-        <input type="datetime" id="date" [(ngModel)]="newTask.dueDate" />
+        <input type="datetime-local" id="date" [(ngModel)]="newTask.dueDate" />
 
         <button (click)="addTask()">Add Task</button>
     </div>

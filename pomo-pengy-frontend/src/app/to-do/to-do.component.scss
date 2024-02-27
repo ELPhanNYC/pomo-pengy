@@ -2,7 +2,8 @@
     width: 33rem;
     height: 39.6875rem;
     border-radius: 3.125rem;
-    background: #B0A695;
+    background: #1B1A55;
+    color: white;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: auto;
     margin-right: auto;
@@ -26,7 +27,7 @@
     border-radius: 50%;
     width: 3.6875rem;
     height: 3.6875rem;
-    background: #EBE3D5;
+    background: #535C91;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: auto;
     margin-right: auto;
@@ -35,7 +36,7 @@
     margin-bottom: 1rem;
 }
 .task-add-button:hover {
-    background-color: #B0A695;
+    background-color: #1B1A55;
 }
 h2 {
     padding-top: 0.63rem;
@@ -44,7 +45,7 @@ h2 {
     width: 29.625rem;
     min-height: 5.6875rem;
     border-radius: 3.125rem;
-    background: #EBE3D5;
+    background: #9290C3;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -65,11 +66,14 @@ h2 {
     }
     .submit {
         border-radius: 3.125rem;
-        background-color: #776B5D;
+        background-color: #535C91;
         color: #FFFFFF;
         font-family: Jua;
         width: 4rem;
         height: 2.25rem;
         border: none;
+    }
+    .submit:hover {
+        background-color: #1B1A55;
     }
 }

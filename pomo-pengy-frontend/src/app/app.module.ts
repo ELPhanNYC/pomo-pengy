@@ -9,6 +9,8 @@ import { SessionButtonComponent } from './session-button/session-button.componen
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ToDoComponent } from './to-do/to-do.component';
+import { PomoPageComponent } from './pomo-page/pomo-page.component';
+import { TimerComponent } from './timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ToDoComponent } from './to-do/to-do.component';
     SessionButtonComponent,
     NavBarComponent,
     HomePageComponent,
-    ToDoComponent
+    ToDoComponent,
+    PomoPageComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,

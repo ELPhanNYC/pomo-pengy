@@ -22,21 +22,21 @@ export class TimeDateComponent {
     setInterval(() => this.updateDateTime(), 1000);
   }
 
-  private padZero(num: number): string {
-    // Add leading zero if the number is less than 10
-    return num < 10 ? '0' + num : '' + num;
-  }
-
   private formatTime(curDate: Date): string {
-    // Format the time as HH:MM:SS
+    let hours = curDate.getHours() % 12;
+    hours = hours === 0 ? 12 : hours;
+  
     return (
-      this.padZero(curDate.getHours() % 12) +
+      this.padZero(hours) +
       ':' +
       this.padZero(curDate.getMinutes()) +
-      // ':' +
-      // this.padZero(date.getSeconds()) +
-      (this.currentDateTime.getHours() >= 12 ? 'pm' : 'am')
+      ' ' +
+      (curDate.getHours() >= 12 ? 'PM' : 'AM')
     );
+  }
+  
+  private padZero(value: number): string {
+    return value < 10 ? '0' + value : '' + value;
   }
 
   private formatDate(curDate: Date): string {

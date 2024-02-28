@@ -9,15 +9,22 @@ import { TaskService } from '../task.service';
 })
 export class ToDoComponent {
   tasks: Task[] = [];
-  newTask: Task = { title: '', dueDate: new Date() };
+  newTask: Task = { title: '', dueDate: new Date(), include: false,};
 
   constructor(private taskService: TaskService, private el: ElementRef, private renderer: Renderer2) {
     this.tasks = taskService.getTasks();
   }
 
   addTask(): void {
+    if (!this.newTask.title.trim()) {
+      // You can show an error message or handle it as needed
+      alert('Please enter a task title!');
+      return;
+    }
+
     this.taskService.addTask(this.newTask);
-    this.newTask = { title: '', dueDate: new Date() };
+    console.log(this.newTask);
+    this.newTask = { title: '', dueDate: new Date(), include: false};
 
     const container = this.el.nativeElement.querySelector('.temp-container');
     this.renderer.setStyle(container, "display", "none");

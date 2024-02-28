@@ -1,0 +1,16 @@
+<div class = "timer-container">
+    <div>
+        <h1>{{ minutes | number: '2.0' }} min {{ seconds | number: '2.0' }} s</h1>
+    </div>
+    <div class="timer-controller">
+        <div>
+            <label for="minutes">Minutes: </label>
+            <input type="number" id="minutes" [(ngModel)]="minutes" min="1" class ="timer-input">
+        </div>
+        <div>
+            <button (click)="startTimer()" [disabled]="isRunning" class="timer-buttons">Start</button>
+            <button (click)="stopTimer()" [disabled]="!isRunning" class="timer-buttons">Stop</button>
+            <button (click)="resetTimer()" class="timer-buttons">Reset</button>
+        </div>
+    </div>
+</div>

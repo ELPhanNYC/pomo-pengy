@@ -11,6 +11,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ToDoComponent } from './to-do/to-do.component';
 import { PomoPageComponent } from './pomo-page/pomo-page.component';
 import { TimerComponent } from './timer/timer.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { NotesPageComponent } from './notes-page/notes-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { TimerComponent } from './timer/timer.component';
     HomePageComponent,
     ToDoComponent,
     PomoPageComponent,
-    TimerComponent
+    TimerComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    NotesPageComponent
   ],
   imports: [
     BrowserModule,

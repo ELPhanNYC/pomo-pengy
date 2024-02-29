@@ -14,6 +14,7 @@ import { TimerComponent } from './timer/timer.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { NotesPageComponent } from './notes-page/notes-page.component';
+import { SpotifyIntegrationComponent } from './spotify-integration/spotify-integration.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NotesPageComponent } from './notes-page/notes-page.component';
     TimerComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    NotesPageComponent
+    NotesPageComponent,
+    SpotifyIntegrationComponent
   ],
   imports: [
     BrowserModule,

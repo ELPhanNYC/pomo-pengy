@@ -1,16 +1,24 @@
 <div class = "timer-container">
     <div>
-        <h1>{{ minutes | number: '2.0' }} min {{ seconds | number: '2.0' }} s</h1>
+        <h1>{{ entered | number: '2.0' }} min {{ seconds | number: '2.0' }} s</h1>
     </div>
     <div class="timer-controller">
-        <div>
-            <label for="minutes">Minutes: </label>
-            <input type="number" id="minutes" [(ngModel)]="minutes" min="1" class ="timer-input">
-        </div>
         <div>
             <button (click)="startTimer()" [disabled]="isRunning" class="timer-buttons">Start</button>
             <button (click)="stopTimer()" [disabled]="!isRunning" class="timer-buttons">Stop</button>
             <button (click)="resetTimer()" class="timer-buttons">Reset</button>
+            <br>
+            <button (click)="toggleSettings()" class = "toggle" [style.display]="displaySettings ? 'none': 'block'">&#8964;</button>
+        </div>
+        <div [style.display]="displaySettings ? 'block' : 'none'">
+            <p>To use the Pomodoro Timer, set your desired studying and break intervals. These intervals will alternate allowing you a maximize your studying. We provided some default values that are often used.</p>
+            <label for="minutes">Study Interval: </label>
+            <input type="number" id="minutes" [(ngModel)]="minutes" min="1" class ="timer-input">
+            <br>
+            <label for="minutes">Break Interval: </label>
+            <input type="number" id="minutes" [(ngModel)]="break" min="1" class ="timer-input">
+            <br>
+            <button (click)="toggleSettings()" class = "toggle inner">&#8963;</button>
         </div>
     </div>
 </div>

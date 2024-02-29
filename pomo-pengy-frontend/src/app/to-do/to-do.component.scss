@@ -101,3 +101,21 @@ li {
     margin: 0;
     margin-bottom: -0.75rem;
 }
+
+.toggle {
+    color: #535C91;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+.toggle:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.container-info {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 75%;
+}

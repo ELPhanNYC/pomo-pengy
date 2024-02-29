@@ -45,7 +45,6 @@ h1 {
 label {
     font-size: 1.25rem;
     margin-right: 0.75rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .timer-input {
     font-family: Jua;
@@ -56,4 +55,24 @@ label {
     text-decoration: none;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.toggle {
+    color: #535C91;
+    font-size: 1.25rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: inherit;
+    border: none;
+    text-decoration: none;
+}
+
+.inner {
+    margin-top: 1.50rem;
+}
+
+.toggle:hover {
+    color: white;
+    cursor: pointer;
 }

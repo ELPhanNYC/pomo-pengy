@@ -1,46 +1,62 @@
 import { Component, OnInit } from '@angular/core';
+import { TimerService } from '../timer.service';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss']
+  styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
-  minutes: number = 35; 
-  entered:number = 35;
-  seconds: number = 0;
-  isRunning: boolean = false;
-  interval: any;
+  constructor(private timerService: TimerService) {}
+
+  displaySettings: boolean = false;
+
+  toggleSettings() {
+    this.displaySettings = !this.displaySettings;
+  }
 
   ngOnInit() {
     this.resetTimer();
   }
 
   startTimer() {
-    this.entered = this.minutes
-    this.isRunning = true;
-    this.interval = setInterval(() => {
-      if (this.seconds > 0) {
-        this.seconds--;
-      } else if (this.minutes > 0) {
-        this.minutes--;
-        this.seconds = 59;
-      } else {
-        this.resetTimer();
-        // You can add a notification or play a sound when the Pomodoro session is complete.
-      }
-    }, 1000);
+    this.timerService.startTimer();
   }
 
   stopTimer() {
-    this.isRunning = false;
-    clearInterval(this.interval);
+    this.timerService.stopTimer();
   }
 
   resetTimer() {
-    this.isRunning = false;
-    clearInterval(this.interval);
-    this.minutes = this.entered;
-    this.seconds = 0;
+    this.timerService.resetTimer();
   }
+
+  get minutes(): number {
+    return this.timerService.minutes;
+  }
+
+  get entered():number {
+    return this.timerService.entered;
+  }
+
+  get seconds(): number {
+    return this.timerService.seconds;
+  }
+
+  get isRunning(): boolean {
+    return this.timerService.isRunning;
+  }
+
+  get break(): number {
+    return this.timerService.break;
+  }
+
+  set minutes(min:number){
+    this.timerService.minutes = min;
+  }
+
+  set break(br:number){
+    this.timerService.break = br;
+  }
+
 }

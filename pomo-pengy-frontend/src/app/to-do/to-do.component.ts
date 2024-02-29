@@ -11,8 +11,14 @@ export class ToDoComponent {
   tasks: Task[] = [];
   newTask: Task = { title: '', dueDate: new Date(), include: false,};
 
+  displayInfo:boolean = true;
+
   constructor(private taskService: TaskService, private el: ElementRef, private renderer: Renderer2) {
     this.tasks = taskService.getTasks();
+  }
+
+  toggleInfo(){
+    this. displayInfo = !this.displayInfo
   }
 
   addTask(): void {

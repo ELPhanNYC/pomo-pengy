@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pengy-portal-frontend:build:production"
+              "buildTarget": "pengy-portal-frontend:build:production"
             },
             "development": {
-              "browserTarget": "pengy-portal-frontend:build:development"
+              "buildTarget": "pengy-portal-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pengy-portal-frontend:build"
+            "buildTarget": "pengy-portal-frontend:build"
           }
         },
         "test": {

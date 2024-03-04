@@ -15,6 +15,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { NotesPageComponent } from './notes-page/notes-page.component';
 import { SpotifyIntegrationComponent } from './spotify-integration/spotify-integration.component';
+import { TextEditorComponent } from './text-editor/text-editor.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SpotifyIntegrationComponent } from './spotify-integration/spotify-integ
     LoginPageComponent,
     RegisterPageComponent,
     NotesPageComponent,
-    SpotifyIntegrationComponent
+    SpotifyIntegrationComponent,
+    TextEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -39,4 +41,5 @@ import { SpotifyIntegrationComponent } from './spotify-integration/spotify-integ
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

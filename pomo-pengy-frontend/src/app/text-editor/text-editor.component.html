@@ -1,0 +1,17 @@
+<div class="parent">
+    <div class="child editor">
+        <div>
+            <div class = "toolbar">
+                <label for="font-select">Font: </label>
+                <select id="font-select" [(ngModel)]="selectedFont">
+                    <option *ngFor="let font of fonts" [value]="font">{{ font }}</option>
+                </select>
+            </div>
+        </div>
+      <textarea [(ngModel)]="markdownText" placeholder="Enter Markdown text here..."></textarea>
+    </div>
+    
+    <div class="child preview std-font">
+      <markdown class = "std-font" [data]="markdownText" [style.fontFamily]="selectedFont" ngPreserveWhitespaces></markdown>
+    </div>
+  </div>

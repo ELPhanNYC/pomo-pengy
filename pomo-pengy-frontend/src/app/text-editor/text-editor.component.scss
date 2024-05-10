@@ -1,0 +1,76 @@
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem;
+    text-align: center;
+}
+
+.child {
+    flex: 1;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    vertical-align: middle;
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 4rem;
+    box-sizing: border-box;
+}
+
+.preview {
+    background-color: white;
+    height: calc(100vh - 3.5rem); 
+    overflow-y: auto;
+    width: 100%;
+}
+
+.toolbar {
+    width: 100%;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    background-color: gray;
+    box-sizing: border-box;
+    label {
+        padding-left: 0.25rem;
+        color: white;
+    }
+}
+
+textarea {
+    padding: 0.5rem;
+    width: 100%;
+    height: calc(100vh - 5.5rem); 
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.std-font {
+    padding-top: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+@media (max-width: 768px) {
+    /* Stack child containers vertically */
+    .parent {
+        flex-direction: column;
+    }
+
+    /* Adjust child container width */
+    .child {
+        max-width: 100%; /* Allow each child to take up full width */
+    }
+
+    /* Adjust height of textarea and preview for smaller screens */
+    textarea,
+    .preview {
+        height: 50vh; /* Adjust height for smaller screens */
+    }
+}

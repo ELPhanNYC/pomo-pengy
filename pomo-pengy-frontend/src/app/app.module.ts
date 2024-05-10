@@ -17,6 +17,8 @@ import { NotesPageComponent } from './notes-page/notes-page.component';
 import { SpotifyIntegrationComponent } from './spotify-integration/spotify-integration.component';
 import { TextEditorComponent } from './text-editor/text-editor.component';
 
+import { MarkdownModule } from 'ngx-markdown';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,8 +39,14 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MarkdownModule.forRoot(),
+    MarkdownModule.forChild(),
+    HttpClientModule,
+    MarkdownModule.forRoot({ loader: HttpClient }),
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 

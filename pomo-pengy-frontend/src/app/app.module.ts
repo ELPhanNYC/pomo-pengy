@@ -20,6 +20,7 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginRegisterButtonsComponent } from './login-register-buttons/login-register-buttons.component';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { LoginRegisterButtonsComponent } from './login-register-buttons/login-re
     NotesPageComponent,
     SpotifyIntegrationComponent,
     TextEditorComponent,
-    LoginRegisterButtonsComponent
+    LoginRegisterButtonsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

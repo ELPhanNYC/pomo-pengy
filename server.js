@@ -14,16 +14,15 @@ database.on('error', (error) => console.error('Database connection error:', erro
 database.once('open', () => console.log('Database connected'));
 
 // Define data schemas (document formatting)
+// Uniqueness is checked server-side
 const userSchema = new mongoose.Schema({
     username: {
         required: true,
         type: String,
-        unique: true
     },
     email: {
         required: true,
         type: String,
-        unique: true
     },
     password: {
         required: true,
@@ -31,7 +30,6 @@ const userSchema = new mongoose.Schema({
     },
     accessToken: {
         type: String,
-        unique: true
     },
     createdAt: {
         type: Date,

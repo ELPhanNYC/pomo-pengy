@@ -5,7 +5,7 @@
         <a (click)="toggleInfo()" [style.display]="displayInfo ? 'inline' : 'none'"class = "toggle">˄</a>
     </h2>
     <div [style.display]="displayInfo ? 'block' : 'none'">
-        <p class="container-info">Here is where you can organize your tasks. Simply press the "+" button and fill out the form. Remember to check the box if you want to include a date with your task!</p>
+        <p class="container-info">Here is where you can organize your tasks. To add a new task, press the "+" button and fill out the form. Check the box if you want to include a due date for your task.</p>
     </div>
     <div class = "task-container">
         <ul>
@@ -13,9 +13,9 @@
                 <div class = "task-item">
                     <p class = "task-title">{{ task.title }}</p>
                     <br>
-                    <p *ngIf="task.include" class = "task-date">Due on {{ task.dueDate | date:'medium' }}</p>
+                    <p *ngIf="task.include" class = "task-date">due on {{ task.dueDate | date:'medium' }}</p>
                     <br>
-                    <button class = "submit" (click)="removeTask(i)">Remove</button>
+                    <button class = "submit" (click)="removeTask(i)">remove</button>
                 </div>
             </li>
         </ul>
@@ -34,6 +34,6 @@
         <!-- Ignore the errors -->
         <input class = "user-vals" type="datetime-local" id="date" [(ngModel)]="newTask.dueDate" />
         <br>
-        <button class = "submit" (click)="addTask()">Add Task</button>
+        <button class = "submit" (click)="addTask()">add task</button>
     </div>
 </div>

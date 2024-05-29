@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ApiService } from '../api.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit, OnDestroy{
+export class HeaderComponent implements OnInit {
 
   user: string = '';
   logged_in: boolean = false;
@@ -18,10 +18,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
     console.log(this.user);
     console.log(this.logged_in);
 
-  }
-
-  ngOnDestroy() {
-    localStorage.clear();
   }
 
   checkStatus() {

@@ -69,7 +69,7 @@ app.post('/api/login', async (req, res) => {
         user.accessToken = accessToken;
         await user.save();
 
-        res.status(200).json({ accessToken });
+        res.status(200).json({ "username": user.username, "accessToken": accessToken });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

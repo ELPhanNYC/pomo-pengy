@@ -1,5 +1,16 @@
 app-login-register-buttons {
-    position: absolute;
-    top: 4rem;  /* Adjust the top value as needed */
-    right: 0.1rem;  /* Adjust the right value as needed */
-  }
+  position: absolute;
+  top: 4rem;
+  right: 0.1rem;
+}
+
+.welcome-message {
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 3rem;
+
+  // positioning
+  position: absolute;
+  top: 4rem;
+  right: 0.1rem;
+}

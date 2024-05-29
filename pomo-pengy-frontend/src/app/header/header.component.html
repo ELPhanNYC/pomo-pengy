@@ -1,3 +1,6 @@
 <img routerLink="/" class = "logo" src = "../../assets/pomo_pengy_logo_dark.png">
-<app-login-register-buttons></app-login-register-buttons>
+<div *ngIf="!logged_in">
+    <app-login-register-buttons></app-login-register-buttons>
+</div>
+<p *ngIf="logged_in" class = "welcome-message">hello, {{ user }}!</p>
 <app-nav-bar></app-nav-bar>

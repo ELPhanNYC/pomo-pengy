@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { LoginInterface } from '../login-interface';
 
 @Component({
   selector: 'app-login-page',
@@ -23,9 +24,11 @@ export class LoginPageComponent {
     };
     
     this.apiService.sendLogin(payload)
-      .subscribe(response => {       
+      .subscribe((response: LoginInterface) => {       
         alert('Login Successful!');
-        this.apiService.set_state();
+        console.log(response)
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('token', response.accessToken);
         this.router.navigate(['/']);
       }, error => {
         console.error('Error:', error);

@@ -2,11 +2,13 @@ import { Component} from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { LoginInterface } from '../login-interface';
+import { fadeInAnimation } from 'src/assets/animations/animations';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class LoginPageComponent {
 

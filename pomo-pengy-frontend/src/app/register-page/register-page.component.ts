@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from 'src/assets/animations/animations';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.scss']
+  styleUrls: ['./register-page.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class RegisterPageComponent {
 

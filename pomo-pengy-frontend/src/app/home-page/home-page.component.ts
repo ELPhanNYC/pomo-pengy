@@ -1,18 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
+import { Component} from '@angular/core';
+import { fadeInAnimation } from 'src/assets/animations/animations';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class HomePageComponent {
-
-  constructor( private apiService: ApiService){}
-
-  ngOninit() {
-
-  }
 
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,11 +17,12 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { NotesPageComponent } from './notes-page/notes-page.component';
 import { SpotifyIntegrationComponent } from './spotify-integration/spotify-integration.component';
 import { TextEditorComponent } from './text-editor/text-editor.component';
+import { LoginRegisterButtonsComponent } from './login-register-buttons/login-register-buttons.component';
+import { HeaderComponent } from './header/header.component';
 
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { LoginRegisterButtonsComponent } from './login-register-buttons/login-register-buttons.component';
-import { HeaderComponent } from './header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     MarkdownModule.forRoot(),

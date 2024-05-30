@@ -2,11 +2,20 @@ import { Component} from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { LoginInterface } from '../login-interface';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1.5s', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class LoginPageComponent {
 

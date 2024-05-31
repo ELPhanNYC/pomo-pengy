@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoginInterface } from '../login-interface';
 import { fadeInAnimation } from 'src/assets/animations/animations';
 
+import { supervisor } from '../storage-supervisor.service';
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -28,8 +30,9 @@ export class LoginPageComponent {
     this.apiService.sendLogin(payload)
       .subscribe((response: LoginInterface) => {       
         alert('Login Successful!');
-        localStorage.setItem('username', response.username);
-        localStorage.setItem('token', response.accessToken);
+        // Set token expiry to 1 Day => Require Re-login
+        supervisor.setItem('username', response.username, 1440);
+        supervisor.setItem('token', response.accessToken, 1440);
         this.router.navigate(['/']);
       }, error => {
         console.error('Error:', error);

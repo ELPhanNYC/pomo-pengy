@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpInterceptor, HttpHandler, HttpRequest } fr
 import { Observable } from 'rxjs';
 import { LoginInterface } from './login-interface';
 
+import { supervisor } from './storage-supervisor.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +21,7 @@ export class ApiService {
   }
 
   sendTask(data: { title: string, dueDate: Date, include: boolean }) {
-    const token = localStorage.getItem("token");
+    const token = supervisor.getItem("token");
     if(token){
       const headers = new HttpHeaders({
         "authorization": token
@@ -31,7 +33,8 @@ export class ApiService {
   }
 
   getTasks() {
-    const token = localStorage.getItem("token");
+    const token = supervisor.getItem("token");
+    console.log(token)
     if(token){
       const headers = new HttpHeaders({
         "authorization": token

@@ -28,7 +28,6 @@ export class LoginPageComponent {
     this.apiService.sendLogin(payload)
       .subscribe((response: LoginInterface) => {       
         alert('Login Successful!');
-        console.log(response)
         localStorage.setItem('username', response.username);
         localStorage.setItem('token', response.accessToken);
         this.router.navigate(['/']);

@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const { type } = require('os');
 const app = express();
 
 // Manage DB connection
@@ -37,16 +38,58 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+const taskSchema = new mongoose.Schema({
+    username: {
+        required: true,
+        type: String,
+    },
+    title: {
+        required: true,
+        type: String,
+    },
+    dueDate: {
+        type: Date,
+    },
+    include: {
+        require: true,
+        type: Boolean,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+
 // Define cursor to the collection
 const User = mongoose.model('User', userSchema);
+
+const Task = mongoose.model('Task', taskSchema);
 
 app.use(express.json());
 
 // Serve static files from the Angular app
 app.use(express.static(path.join(__dirname, 'dist/pomo-pengy')));
 
+// Token Helper Functions
 const generateAccessToken = () => {
     return crypto.randomBytes(32).toString('hex');
+};
+
+const authenticateToken = async (req, res, next) => {
+
+    const token = req.headers['authorization'];
+
+    if (!token) return res.sendStatus(401);
+
+    try {
+        const user = await User.findOne({ accessToken: token });
+        if (!user) return res.sendStatus(403);
+
+        req.user = user;
+        next();
+    } catch (error) {
+        res.sendStatus(500).json({ message: error.message });
+    }
 };
 
 // ------------------- API ROUTING -------------------
@@ -99,22 +142,34 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
-const authenticateToken = async (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (!token) return res.sendStatus(401);
+app.post('/api/postTask', authenticateToken, async (req, res) => {
+    const { title, dueDate, include } = req.body;
+    const username = req.user.username;
 
     try {
-        const user = await User.findOne({ accessToken: token });
-        if (!user) return res.sendStatus(403);
+        const newTask = new Task({
+            username,
+            title,
+            dueDate,
+            include
+        });
 
-        req.user = user;
-        next();
+        const savedTask = await newTask.save();
+        res.status(201).json(savedTask);
     } catch (error) {
-        res.sendStatus(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-};
+});
+
+app.get('/api/getTasks', authenticateToken, async (req, res) => {
+    const username = req.user.username;
+    try {
+        const storedTasks = await Task.find({username});
+        res.status(201).json(storedTasks);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 // Server static files
 app.get('*', (req, res) => {

@@ -22,6 +22,7 @@ import { HeaderComponent } from './header/header.component';
 
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MarkdownModule.forRoot({ loader: HttpClient }),
   ],
   providers: [
-    
+    ApiService
   ],
   bootstrap: [AppComponent]
 })

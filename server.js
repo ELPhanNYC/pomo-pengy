@@ -171,6 +171,21 @@ app.get('/api/getTasks', authenticateToken, async (req, res) => {
     }
 });
 
+app.post('/api/removeTask', authenticateToken, async (req, res) => {
+    const { title } = req.body;
+    const username = req.user.username;
+
+    try {
+        const result = await Task.deleteOne({ username, title });
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
+        res.status(200).json({ message: 'Task deleted', title });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Server static files
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/pomo-pengy/index.html'));

@@ -49,7 +49,9 @@ export class ToDoComponent implements OnInit {
   }
 
   removeTask(index: number): void {
-    this.taskService.removeTask(index);
+    const removed:Task = this.taskService.removeTask(index);
+    console.log(removed.title);
+    this.removeFromDB(removed.title);
   }
 
   displayForm(): void{
@@ -86,6 +88,19 @@ export class ToDoComponent implements OnInit {
     };
     
     this.apiService.sendTask(payload)
+      .subscribe((response: any) => {  
+          null;
+      }, (error: any) => {
+        console.error('Error:', error);
+      });
+  }
+
+  removeFromDB(title: string){
+    const payload = {
+      title: title
+    };
+    
+    this.apiService.removeTask(payload)
       .subscribe((response: any) => {  
           null;
       }, (error: any) => {

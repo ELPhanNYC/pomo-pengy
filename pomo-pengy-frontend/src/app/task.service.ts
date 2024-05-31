@@ -16,7 +16,7 @@ export class TaskService {
     this.tasks.push(task);
   }
 
-  removeTask(index: number): void {
-    this.tasks.splice(index, 1);
+  removeTask(index: number): Task {
+    return this.tasks.splice(index, 1)[0];
   }
 }

@@ -45,5 +45,17 @@ export class ApiService {
     return new Observable<Object>;
   }
 
+  removeTask(data: { title: string}) {
+    const token = supervisor.getItem("token");
+    if(token){
+      const headers = new HttpHeaders({
+        "authorization": token
+      });
+      return this.http.post('http://localhost:8080/api/removeTask', data, {headers});
+    } 
+    // return an empty object
+    return new Observable<Object>;
+  }
+
 }
 

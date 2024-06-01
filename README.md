@@ -8,6 +8,7 @@ A study-focused productively platform designed by students for students. Incenti
 ---
 ## Developers
  > Ethan Phan (University at Buffalo)
+ 
  > Savina Chan (New York University)
  ---
  ## Our Tech Stack

@@ -23,6 +23,9 @@ import { HeaderComponent } from './header/header.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AchievementsComponent } from './achievements/achievements.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { ApiService } from './api.service';
     SpotifyIntegrationComponent,
     TextEditorComponent,
     LoginRegisterButtonsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfilePageComponent,
+    AchievementsComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,7 @@ import { ApiService } from './api.service';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     HeaderComponent,
     ProfilePageComponent,
     AchievementsComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,

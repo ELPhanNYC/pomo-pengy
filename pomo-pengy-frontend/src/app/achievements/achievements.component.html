@@ -1,1 +1,18 @@
-<p>achievements works!</p>
+<div class="levels-container">
+    <div class = "upper">
+        <h2>study level
+            <a (click)="toggleInfo()" [style.display]="displayInfo ? 'none' : 'inline'" class = "toggle">˅</a>
+            <a (click)="toggleInfo()" [style.display]="displayInfo ? 'inline' : 'none'"class = "toggle">˄</a>
+        </h2>
+        <div [style.display]="displayInfo ? 'block' : 'none'">
+            <p class="container-info">inspired by the ranking feature in modern games, Pomo Pengy allows you to climb to higher ranks on the pyramid of pengy knowledge. The more hours of studying you put in, the higher your rank grows!</p>
+        </div>
+        <div class = "center-all">
+            <h1>{{cur}}</h1>
+        </div>
+    </div>
+    <div class = "lower">
+        <h2>achievements</h2>
+        <app-carousel></app-carousel>
+    </div>
+</div>

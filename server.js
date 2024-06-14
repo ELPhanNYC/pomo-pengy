@@ -186,6 +186,10 @@ app.post('/api/removeTask', authenticateToken, async (req, res) => {
     }
 });
 
+app.get('/api/penguins', async (req, res) => {
+    res.status(200).json('You found the hidden route! Thank you for using Pomo Pengy!')
+});
+
 // Server static files
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/pomo-pengy/index.html'));

@@ -1,23 +1,25 @@
-<div class="carousel-container">
-    <button class="carousel-button" (click)="showPrevious()">&lt;</button>
+<div>
+    <div class="carousel-container">
+        <button class="carousel-button" (click)="showPrevious()">&lt;</button>
 
-    <div class="carousel-slide">
-        <img
-            *ngIf="true"
-            [src]="achievement_badges[getPreviousIndex()].image"
-            class="previous"
-        />
-        <img
-            [src]="achievement_badges[currentIndex].image"
-            alt="Current badge"
-            class="current"
-        />
-        <img
-            *ngIf="true"
-            [src]="achievement_badges[getNextIndex()].image"
-            class="next"
-        />
+        <div class="carousel-slide">
+            <img
+                *ngIf="true"
+                [src]="achievement_badges[getPreviousIndex()].image"
+                class="previous"
+            />
+            <img
+                [src]="achievement_badges[currentIndex].image"
+                alt="Current badge"
+                class="current"
+            />
+            <img
+                *ngIf="true"
+                [src]="achievement_badges[getNextIndex()].image"
+                class="next"
+            />
+        </div>
+        <button class="carousel-button" (click)="showNext()">&gt;</button>
     </div>
-
-    <button class="carousel-button" (click)="showNext()">&gt;</button>
+    <p class="desc">{{achievement_badges[currentIndex].desc}}</p>
 </div>

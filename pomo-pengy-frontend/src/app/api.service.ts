@@ -71,4 +71,16 @@ export class ApiService {
     // return an empty object
     return new Observable<Object>();
   }
+
+  getUserStats() {
+    const token = supervisor.getItem("token");
+    console.log(token);
+    if (token) {
+      const headers = new HttpHeaders({
+        authorization: token,
+      });
+      return this.http.get("http://localhost:8080/api/sendStats", { headers });
+    }
+    return new Observable<Object>();
+  }
 }

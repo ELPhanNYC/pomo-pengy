@@ -129,6 +129,8 @@ app.post("/api/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
+    const username = user.username;
+
     // Check if existing account has a stat object, if not create one
     const stat = await Stats.findOne({ username });
     if (!stat) {
@@ -229,7 +231,7 @@ app.post("/api/register", async (req, res) => {
 
     const savedStats = await newStat.save();
     const savedUser = await newUser.save();
-    res.status(201).json(savedUser, savedStats);
+    res.status(201).json(savedUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -306,7 +308,8 @@ app.get("/api/penguins", async (req, res) => {
 });
 
 app.patch("/api/endSession", authenticateToken, async (req, res) => {
-  const { username, sessionTime } = req.body;
+  const { sessionTime } = req.body;
+  const username = req.user.username;
 
   try {
     const user = Stats.findOne({ username });
@@ -320,6 +323,29 @@ app.patch("/api/endSession", authenticateToken, async (req, res) => {
         { new: true },
       );
       res.status(200);
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/sendStats", authenticateToken, async (req, res) => {
+  const username = req.user.username;
+  try {
+    const userStats = await Stats.findOne({ username });
+    if (userStats) {
+      const cleanedStats = {
+        timeStudy: userStats.timeStudy,
+        completedTasks: userStats.completedTasks,
+        tasksLifetime: userStats.tasksLifetime,
+        NumberSessions: userStats.NumberSessions,
+        streak: userStats.streak,
+        longestStreak: userStats.longestStreak,
+      };
+      res.status(200).json(cleanedStats);
     } else {
       res.status(404).json({ message: "User not found" });
     }

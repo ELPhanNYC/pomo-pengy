@@ -16,6 +16,7 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit(){
       this.getStats();
+      console.log(this.stats)
   }
 
   getStats() {

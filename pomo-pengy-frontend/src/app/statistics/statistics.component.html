@@ -1,1 +1,15 @@
 <h2>study insight</h2>
+
+<div class = "stats-container">
+    <table>
+        <tr>
+            <th>statistic</th>
+            <th>value</th>
+        </tr>
+        <!-- Each row from here on is a statistic-->
+        <tr *ngFor="let item of stats | keyvalue">
+            <td>{{item.key}}</td>
+            <td>{{item.value}}</td>
+        </tr>
+    </table>
+</div>

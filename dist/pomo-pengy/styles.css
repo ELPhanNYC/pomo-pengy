@@ -5,6 +5,12 @@
   font-family: Jua;
   src: url('Jua-Regular.ttf');
 }
+/* 
+Color Schema:
+Darkest: #070F2B
+Dark: #1B1A52
+Light: #555C8D
+*/
 body {
   background-color: #070F2B;
   font-family: Jua;

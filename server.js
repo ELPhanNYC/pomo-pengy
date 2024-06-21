@@ -142,7 +142,7 @@ app.post("/api/login", async (req, res) => {
       );
 
       const newStat = new Stats({
-        username,
+        username: username,
         timeStudy: 0,
         completedTasks: 0,
         tasksLifetime: 0,
@@ -218,7 +218,7 @@ app.post("/api/register", async (req, res) => {
     const dateOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
     const newStat = new Stats({
-      username,
+      username: username,
       timeStudy: 0,
       completedTasks: 0,
       tasksLifetime: 0,

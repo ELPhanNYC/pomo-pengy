@@ -3,9 +3,9 @@
     <h1>register</h1>
     <div class = "form-input">
         <form>
-            <input type="text" id="email" placeholder="email" [(ngModel)]="email"><br>
-            <input type="text" id="username" placeholder="username" [(ngModel)]="username"><br>
-            <input type="password" id="password" placeholder="password" [(ngModel)]="password"><br>
+            <input type="text" id="email" name="email" placeholder="email" [(ngModel)]="email"><br>
+            <input type="text" id="username" name ="username" placeholder="username" [(ngModel)]="username"><br>
+            <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="password"><br>
             <div class="submit-button" (click)="postToDB()">register</div>
         </form>
     </div>

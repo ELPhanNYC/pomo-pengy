@@ -3,8 +3,8 @@
     <h1>login</h1>
     <div class = "form-input">
         <form>
-            <input type="text" id="email" placeholder="email" [(ngModel)]="email"><br>
-            <input type="password" id="password" placeholder="password" [(ngModel)]="password"><br>
+            <input type="text" id="email" placeholder="email" name="email" [(ngModel)]="email"><br>
+            <input type="password" id="password" placeholder="password" name="password" [(ngModel)]="password"><br>
             <div class="submit-button" (click)="postToDB()">login</div>
         </form>
     </div>

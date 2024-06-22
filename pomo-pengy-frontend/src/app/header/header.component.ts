@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { ApiService } from '../api.service';
-import { supervisor } from '../storage-supervisor.service';
 
 @Component({
   selector: 'app-header',
@@ -15,15 +14,14 @@ export class HeaderComponent implements OnInit {
   constructor( private apiService: ApiService){}
 
   ngOnInit() {
-    this.checkStatus()
+    this.status()
   }
 
-  checkStatus() {
-    const user = supervisor.getItem('username');
-    const token = supervisor.getItem('token');
-    if(user && token) {
-      this.user = user;
-      this.logged_in = true;
+  status() {
+    const result = this.apiService.checkLogInStatus()
+    if(result[1]) {
+      this.user = result[0];
+      this.logged_in = result[1];
     }
   }
 }

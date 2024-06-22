@@ -27,6 +27,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     ProfilePageComponent,
     AchievementsComponent,
     StatisticsComponent,
-    CarouselComponent
+    CarouselComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

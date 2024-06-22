@@ -83,4 +83,18 @@ export class ApiService {
     }
     return new Observable<Object>();
   }
+
+  logout() {
+    supervisor.removeItem("username");
+    supervisor.removeItem("token");
+  }
+
+  checkLogInStatus() {
+    const user = supervisor.getItem('username');
+    const token = supervisor.getItem('token');
+    if(user && token) {
+      return [user, token]
+    }
+    return []
+  }
 }

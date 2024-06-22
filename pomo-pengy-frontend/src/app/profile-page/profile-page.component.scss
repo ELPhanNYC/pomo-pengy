@@ -10,3 +10,18 @@
     width: 49.5%;
     float: right;
 }
+
+.not_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 0; 
+    a {
+        color: #7f8cec;
+        text-decoration: none;
+    }
+    a:hover {
+        color: white
+    }
+}

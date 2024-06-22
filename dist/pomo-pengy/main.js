@@ -2158,6 +2158,7 @@ class ToDoComponent {
     this.displayInfo = true;
   }
   ngOnInit() {
+    this.tasks = [];
     this.getFromDB();
     this.tasks = this.taskService.getTasks();
   }

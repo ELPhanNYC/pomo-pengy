@@ -252,13 +252,15 @@ app.post("/api/postTask", authenticateToken, async (req, res) => {
     const savedTask = await newTask.save();
 
     // Updating statistics
-    const user = Stats.findOne({ username });
+    const user = await Stats.findOne({ username });
 
-    const patch = Stats.findOneAndUpdate(
-      { username },
-      { tasksLifetime: user.tasksLifetime + 1 },
-      { new: true },
-    );
+    if(user) {
+      const patch = await Stats.findOneAndUpdate(
+        { username },
+        { $inc: { tasksLifetime: 1 } },
+        { returnDocument: 'after' },
+      );
+    }
 
     res.status(201).json(savedTask);
   } catch (error) {
@@ -280,20 +282,19 @@ app.delete("/api/removeTask", authenticateToken, async (req, res) => {
   const { title } = req.query;
   const username = req.user.username;
 
-  console.log(title);
-
   try {
     const result = await Task.deleteOne({ username, title });
     if (result.deletedCount === 0) {
       res.status(404).json({ message: "Task not found" });
     } else {
       // Making the assumption that a deleted task is a completed task (In practice, not always true)
-      const user = Stats.findOne({ username });
-      const patch = Stats.findOneAndUpdate(
-        { username },
-        { completedTasks: user.completedTasks + 1 },
-      );
-
+      const user = await Stats.findOne({ username });
+      if (user) {
+        const patch = await Stats.findOneAndUpdate(
+          { username },
+          { $inc: {completedTasks: 1} },
+        );
+      }
       res.status(200).json({ message: "Task deleted", title });
     }
   } catch (error) {

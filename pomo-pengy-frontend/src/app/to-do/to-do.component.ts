@@ -20,6 +20,7 @@ export class ToDoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tasks = [];
     this.getFromDB();
     this.tasks = this.taskService.getTasks();
   }

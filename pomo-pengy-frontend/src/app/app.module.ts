@@ -28,6 +28,8 @@ import { AchievementsComponent } from './achievements/achievements.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AboutComponent } from './about/about.component';
+import { AboutButtonComponent } from './about-button/about-button.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { LogoutComponent } from './logout/logout.component';
     AchievementsComponent,
     StatisticsComponent,
     CarouselComponent,
-    LogoutComponent
+    LogoutComponent,
+    AboutComponent,
+    AboutButtonComponent
   ],
   imports: [
     BrowserModule,

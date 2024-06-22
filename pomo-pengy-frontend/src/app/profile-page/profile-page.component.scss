@@ -5,6 +5,17 @@
 .components-left{
     width: 49.5%;
     float: left;
+
+    .profile-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lower-button {
+        margin-top: 1rem;
+    }
 }
 .components-right {
     width: 49.5%;
@@ -15,6 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 50vh;
     margin: 0; 
     a {
@@ -23,5 +35,8 @@
     }
     a:hover {
         color: white
+    }
+    h2 {
+        color: #555C8D;
     }
 }

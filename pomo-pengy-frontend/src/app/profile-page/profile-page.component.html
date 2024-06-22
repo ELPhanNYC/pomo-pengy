@@ -1,11 +1,16 @@
 <app-header></app-header>
-<div *ngIf="!logged_in" class = "content not_login">
+<div *ngIf="!logged_in" class = "content not_login" @fadeIn>
     <h3><a routerLink="/register">register</a> or <a routerLink="/login">log in</a> to see personalized statistics and earn achievement badges!</h3>
+    <h2>or</h2>
+    <app-about-button></app-about-button>
 </div>
 <div *ngIf="logged_in" class = "content login">
     <div class = "components-left" @fadeIn>
-        <app-statistics class = "upper"></app-statistics>
-        <app-logout class = "lower"></app-logout>
+        <app-statistics></app-statistics>
+        <div class = "profile-buttons">
+            <app-logout></app-logout>
+            <app-about-button class = "lower-button"></app-about-button>
+        </div>
     </div>
     <div class = "components-right" @fadeIn>
         <app-achievements></app-achievements>

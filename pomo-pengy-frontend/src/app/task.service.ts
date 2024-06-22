@@ -19,4 +19,8 @@ export class TaskService {
   removeTask(index: number): Task {
     return this.tasks.splice(index, 1)[0];
   }
+
+  clearTasks():void {
+    this.tasks = [];
+  }
 }

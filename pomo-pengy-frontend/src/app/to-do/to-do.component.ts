@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import { ApiService } from '../api.service';
@@ -9,7 +9,7 @@ import { TaskItem } from '../task-item';
   templateUrl: './to-do.component.html',
   styleUrls: ['./to-do.component.scss']
 })
-export class ToDoComponent implements OnInit {
+export class ToDoComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
   newTask: Task = { title: '', dueDate: new Date(), include: false,};
 
@@ -19,10 +19,17 @@ export class ToDoComponent implements OnInit {
     
   }
 
-  ngOnInit() {
-    this.tasks = [];
+  ngOnInit(): void {
     this.getFromDB();
     this.tasks = this.taskService.getTasks();
+  }
+
+  ngOnDestroy(): void {
+    const status_arr:any[] = this.apiService.checkLogInStatus();
+    // Clear the to do list if the user is logged in (avoid double printing)
+    if(status_arr[1]){
+      this.taskService.clearTasks()
+    }
   }
 
   toggleInfo(){

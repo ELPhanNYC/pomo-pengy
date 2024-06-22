@@ -1687,6 +1687,9 @@ class TaskService {
   removeTask(index) {
     return this.tasks.splice(index, 1)[0];
   }
+  clearTasks() {
+    this.tasks = [];
+  }
   static #_ = this.ɵfac = function TaskService_Factory(t) {
     return new (t || TaskService)();
   };
@@ -2158,9 +2161,15 @@ class ToDoComponent {
     this.displayInfo = true;
   }
   ngOnInit() {
-    this.tasks = [];
     this.getFromDB();
     this.tasks = this.taskService.getTasks();
+  }
+  ngOnDestroy() {
+    const status_arr = this.apiService.checkLogInStatus();
+    // Clear the to do list if the user is logged in (avoid double printing)
+    if (status_arr[1]) {
+      this.taskService.clearTasks();
+    }
   }
   toggleInfo() {
     this.displayInfo = !this.displayInfo;

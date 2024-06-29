@@ -112,6 +112,18 @@ export class ApiService {
     return new Observable<Object>();
   }
 
+  getUserRank() {
+    const token = supervisor.getItem("token");
+    console.log(token);
+    if (token) {
+      const headers = new HttpHeaders({
+        authorization: token,
+      });
+      return this.http.get("http://localhost:8080/api/getRanking", { headers });
+    }
+    return new Observable<Object>();
+  }
+
 
   logout() {
     supervisor.removeItem("username");

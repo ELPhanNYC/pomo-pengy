@@ -378,20 +378,32 @@ app.patch("/api/patchTask", authenticateToken, async (req, res) => {
 
 });
 
-app.get("/api/sendStats", authenticateToken, async (req, res) => {
+app.get("/api/getRanking", authenticateToken, async (req, res) => {
   const username = req.user.username;
   try {
     const userStats = await Stats.findOne({ username });
     if (userStats) {
-      const cleanedStats = {
-        "study time": userStats.timeStudy,
-        "number of completed tasks": userStats.completedTasks,
-        "number of tasks created": userStats.tasksLifetime,
-        "number of sessions completed": userStats.NumberSessions,
-        "current study streak": userStats.streak,
-        "longest study streak": userStats.longestStreak,
-      };
-      res.status(200).json(cleanedStats);
+      const studyTime = userStats.timeStudy;
+      let rank = "rank up by studying!";
+      const ranking = { 45: "Rookie Pengy",
+                        90: "Apprentice Pengy",
+                        180: "Junior Pengy Analyst",
+                        360: "Associate Pengy",
+                        720: "Pengy Analyst",
+                        1480: "Pengy Fellow",
+                        2960: "Pengy Researcher",
+                        3600: "Erudite Pengy",
+                        4600: "Luminary Pengy",
+                        5600: "Master Pengy",
+                        6600: "Doctor Pengy",
+                        10000: "Enlightened Pengy"
+                      };
+      for(let min in ranking){
+        if(studyTime >= min){
+          rank = ranking[min];
+        }
+      }
+      res.status(200).json({cur: rank});
     } else {
       res.status(404).json({ message: "User not found" });
     }

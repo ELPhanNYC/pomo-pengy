@@ -72,6 +72,20 @@ export class ApiService {
     return new Observable<Object>();
   }
 
+  patchTask(data: object) {
+    const token = supervisor.getItem("token");
+    if (token) {
+      const headers = new HttpHeaders({
+        authorization: token,
+      });
+      return this.http.patch("http://localhost:8080/api/patchTask", data, {
+        headers,
+      });
+    }
+    // return an empty object
+    return new Observable<Object>();
+  }
+
   getUserStats() {
     const token = supervisor.getItem("token");
     console.log(token);
@@ -83,6 +97,21 @@ export class ApiService {
     }
     return new Observable<Object>();
   }
+
+  sendSession(data: { sessionTime: number}) {
+    const token = supervisor.getItem("token");
+    if (token) {
+      const headers = new HttpHeaders({
+        authorization: token,
+      });
+      return this.http.post("http://localhost:8080/api/endSession", data, {
+        headers,
+      });
+    }
+    // return an empty object
+    return new Observable<Object>();
+  }
+
 
   logout() {
     supervisor.removeItem("username");

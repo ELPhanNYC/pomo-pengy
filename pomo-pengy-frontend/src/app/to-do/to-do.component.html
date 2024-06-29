@@ -10,11 +10,24 @@
     <div class = "task-container">
         <ul>
             <li *ngFor="let task of tasks; let i = index">
-                <div class = "task-item">
+                <div *ngIf = "task.edit == true" class = "temp-container task-item">
+                    <label for="title">task</label>
+                    <br>
+                    <input class = "user-vals" type="text" id="title" [(ngModel)]="newTask.title"/>
+                    <br>
+                    <label for="date">due date (optional)</label><input type ="checkbox" [(ngModel)]="newTask.include">
+                    <br>
+                    <input class = "user-vals" type="datetime-local" id="date" [(ngModel)]="newTask.dueDate"/>
+                    <br>
+                    <button class = "edit" (click)="toggleEdit(i)">cancel</button>
+                    <button class = "submit" (click)="patchTask(i)">update</button>
+                </div>
+                <div *ngIf = "!task.edit" class = "task-item">
                     <p class = "task-title">{{ task.title }}</p>
                     <br>
                     <p *ngIf="task.include" class = "task-date">due on {{ task.dueDate | date:'medium' }}</p>
                     <br>
+                    <button class = "edit" (click)="toggleEdit(i)">edit</button>
                     <button class = "submit" (click)="removeTask(i)">remove</button>
                 </div>
             </li>

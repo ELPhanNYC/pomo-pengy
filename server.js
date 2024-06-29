@@ -308,7 +308,7 @@ app.get("/api/penguins", async (req, res) => {
     .json("You found the hidden route! Thank you for using Pomo Pengy!");
 });
 
-app.patch("/api/endSession", authenticateToken, async (req, res) => {
+app.post("/api/endSession", authenticateToken, async (req, res) => {
   const { sessionTime } = req.body;
   const username = req.user.username;
 
@@ -318,10 +318,8 @@ app.patch("/api/endSession", authenticateToken, async (req, res) => {
       const userStat = Stats.findOneAndUpdate(
         { username },
         {
-          timeStudy: user.timeStudy + Number(sessionTime),
-          NumberSessions: user.NumberSessions + 1,
+          $inc:{timeStudy: Number(sessionTime), NumberSessions: 1}
         },
-        { new: true },
       );
       res.status(200);
     } else {
@@ -339,12 +337,59 @@ app.get("/api/sendStats", authenticateToken, async (req, res) => {
     const userStats = await Stats.findOne({ username });
     if (userStats) {
       const cleanedStats = {
-        timeStudy: userStats.timeStudy,
-        completedTasks: userStats.completedTasks,
-        tasksLifetime: userStats.tasksLifetime,
-        NumberSessions: userStats.NumberSessions,
-        streak: userStats.streak,
-        longestStreak: userStats.longestStreak,
+        "study time": userStats.timeStudy,
+        "number of completed tasks": userStats.completedTasks,
+        "number of tasks created": userStats.tasksLifetime,
+        "number of sessions completed": userStats.NumberSessions,
+        "current study streak": userStats.streak,
+        "longest study streak": userStats.longestStreak,
+      };
+      res.status(200).json(cleanedStats);
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.patch("/api/patchTask", authenticateToken, async (req, res) => {
+  const username = req.user.username;
+  const { title, newTitle, newDueDate, newInclude } = req.body;
+
+  try {
+    const updatedTask = await Task.findOneAndUpdate(
+      { username, title },
+      {$set: {
+          title: newTitle,
+          dueDate: newDueDate,
+          include: newInclude
+      }}
+    );
+    if (!updatedTask) {
+      return res.status(404).send({ message: 'Task not found' });
+    }
+    res.send(updatedTask);
+  } catch (error) {
+    res.status(500).send({ message: 'Error updating task', error });
+  }
+
+
+});
+
+app.get("/api/sendStats", authenticateToken, async (req, res) => {
+  const username = req.user.username;
+  try {
+    const userStats = await Stats.findOne({ username });
+    if (userStats) {
+      const cleanedStats = {
+        "study time": userStats.timeStudy,
+        "number of completed tasks": userStats.completedTasks,
+        "number of tasks created": userStats.tasksLifetime,
+        "number of sessions completed": userStats.NumberSessions,
+        "current study streak": userStats.streak,
+        "longest study streak": userStats.longestStreak,
       };
       res.status(200).json(cleanedStats);
     } else {

@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
+
+  constructor(private apiService: ApiService) {}
 
   minutes: number = 45; 
   seconds: number = 0;
@@ -50,11 +53,27 @@ export class TimerService {
     clearInterval(this.interval);
 
     if (this.sprint % 2 === 1) {
+      this.postToDB(this.minutes);
+      // start a break session next
       this.entered = this.break;
     } else {
+      // start a study session next
       this.entered = this.minutes;
     }
 
     this.seconds = 0;
+  }
+
+  postToDB(sessionTime: number){
+    const payload = {
+      sessionTime: sessionTime
+    };
+    
+    this.apiService.sendSession(payload)
+      .subscribe((response: any) => {  
+          null;
+      }, (error: any) => {
+        console.error('Error:', error);
+      });
   }
 }

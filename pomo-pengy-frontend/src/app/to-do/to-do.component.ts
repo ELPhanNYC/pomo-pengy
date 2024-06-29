@@ -11,7 +11,7 @@ import { TaskItem } from '../task-item';
 })
 export class ToDoComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
-  newTask: Task = { title: '', dueDate: new Date(), include: false,};
+  newTask: Task = { title: '', dueDate: new Date(), include: false, edit: false};
 
   displayInfo:boolean = true;
 
@@ -36,6 +36,16 @@ export class ToDoComponent implements OnInit, OnDestroy {
     this.displayInfo = !this.displayInfo
   }
 
+  toggleEdit(index: number) {
+    this.newTask = {
+      title: this.tasks[index].title,
+      dueDate: this.tasks[index].dueDate,
+      include: this.tasks[index].include,
+      edit: false
+    }
+    this.tasks[index].edit = !this.tasks[index].edit;
+  }
+
   addTask(): void {
     if (!this.newTask.title.trim()) {
       // You can show an error message or handle it as needed
@@ -47,7 +57,7 @@ export class ToDoComponent implements OnInit, OnDestroy {
     this.postToDB()
 
     this.taskService.addTask(this.newTask);
-    this.newTask = { title: '', dueDate: new Date(), include: false};
+    this.newTask = { title: '', dueDate: new Date(), include: false, edit: false};
 
     const container = this.el.nativeElement.querySelector('.temp-container');
     this.renderer.setStyle(container, "display", "none");
@@ -72,9 +82,30 @@ export class ToDoComponent implements OnInit, OnDestroy {
 
   parseTaskData(response: TaskItem[]) {
     for(let i of response){
-      const task: Task = {title: i['title'], dueDate: new Date(i['dueDate']), include: i['include']};
+      const task: Task = {title: i['title'], dueDate: new Date(i['dueDate']), include: i['include'], edit: false};
       this.taskService.addTask(task);
     }
+  }
+
+  patchTask(index: number) {
+    const payload = {
+      title: this.tasks[index].title,
+      newTitle: this.newTask.title,
+      newDueDate: this.newTask.dueDate,
+      newInclude: this.newTask.include
+    };
+
+    this.tasks[index] = {
+      title: this.newTask.title,
+      dueDate: this.newTask.dueDate,
+      include: this.newTask.include,
+      edit: false 
+    };
+
+    this.newTask = { title: '', dueDate: new Date(), include: false, edit: false};
+
+    this.patchDB(payload);
+
   }
 
   getFromDB() {
@@ -114,5 +145,14 @@ export class ToDoComponent implements OnInit, OnDestroy {
       }, (error: any) => {
         console.error('Error:', error);
       });
+  }
+
+  patchDB(payload: object) {
+    this.apiService.patchTask(payload)
+    .subscribe((response: any) => {  
+      null;
+    }, (error: any) => {
+      console.error('Error:', error);
+    });
   }
 }

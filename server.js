@@ -315,7 +315,7 @@ app.post("/api/endSession", authenticateToken, async (req, res) => {
   try {
     const user = Stats.findOne({ username });
     if (user) {
-      const userStat = Stats.findOneAndUpdate(
+      const userStat = await Stats.findOneAndUpdate(
         { username },
         {
           $inc:{timeStudy: Number(sessionTime), NumberSessions: 1}

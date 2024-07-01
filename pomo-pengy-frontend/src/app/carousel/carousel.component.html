@@ -11,7 +11,7 @@
             <img
                 [src]="achievement_badges[currentIndex].image"
                 alt="Current badge"
-                class="current"
+                class="current {{achievement_badges[currentIndex].status}}"
             />
             <img
                 *ngIf="true"

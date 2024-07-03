@@ -28,20 +28,27 @@
     top: 50%;
 }
 
-.carousel-slide img.current {
+.carousel-slide img.inactive {
     position: relative;
+    filter: brightness(20%);
+    z-index: 2;
+}
+
+.carousel-slide img.active{
     opacity: 1;
+    filter: brightness(100%);
+    position: relative;
     z-index: 2;
 }
 
 .carousel-slide img.previous {
-    opacity: 0.2;
+    opacity: 0.1;
     transform: scale(0.9) translateX(4rem);
     z-index: 1;
 }
 
 .carousel-slide img.next {
-    opacity: 0.2;
+    opacity: 0.1;
     transform: scale(0.9) translateX(-4rem);
     z-index: 1;
 }

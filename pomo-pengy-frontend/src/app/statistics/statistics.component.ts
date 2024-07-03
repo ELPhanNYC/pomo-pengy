@@ -16,14 +16,12 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit(){
       this.getStats();
-      console.log(this.stats)
   }
 
   getStats() {
     this.apiService.getUserStats()
       .subscribe((response: any) => {  
         if(response){
-          console.log(response)
           this.stats = response;
         }
       }, (error: any) => {

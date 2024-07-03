@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ApiService } from "../api.service";
 
 @Component({
   selector: "app-carousel",
@@ -129,14 +130,37 @@ export class CarouselComponent implements OnInit{
     },
   ];
 
+  stats = {}
+
+  constructor(private apiService: ApiService){}
+
   ngOnInit() {
-      
+      this.getStats();
+      // console.log(this.stats)
+      // this.setStatus(this.stats);
+      console.log(this.achievement_badges)
+  }
+
+  getStats() {
+    this.apiService.getUserStats()
+      .subscribe((response: any) => {  
+        if(response){
+          this.setStatus(response);
+          this.stats = response;
+        }
+      }, (error: any) => {
+        console.error('Error:', error);
+      });
   }
 
   setStatus(statistics: any) {
+    console.log(statistics);
     const timeStudy = statistics["study time"];
     const sessions = statistics["number of sessions completed"];
     const numTask = statistics["number of completed tasks"];
+    console.log(timeStudy);
+    console.log(sessions);
+    console.log(numTask);
     if(sessions >= 1){
       this.achievement_badges[0].status = "active"
     }

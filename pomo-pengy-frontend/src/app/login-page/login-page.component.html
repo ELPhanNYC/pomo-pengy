@@ -2,13 +2,13 @@
 <div class="login-form" @fadeIn>
     <h1>login</h1>
     <div class = "form-input">
-        <form>
-            <input type="text" id="email" placeholder="email" name="email" [(ngModel)]="email"><br>
-            <input type="password" id="password" placeholder="password" name="password" [(ngModel)]="password"><br>
-            <div class="submit-button" (click)="postToDB()">login</div>
+        <form [formGroup]="formLogin" (ngSubmit)="postToDB($event)">
+            <input type="text" id="email" placeholder="email" name="email" required formControlName="email"><br>
+            <input type="password" id="password" placeholder="password" name="password" required formControlName="password"><br>
+            <div class="submit-button" (click)="postToDB($event)">login</div>
             <div class ="error-messages">
-                <p *ngIf="failedLogin" class = "message">your email or password is incorrect, please try again!</p>
-                <p *ngIf="emptyLogin" class = "message">one or more fields are empty!</p>
+                <p *ngIf="failedLogin" class = "alert message">your email or password is incorrect, please try again!</p>
+                <p *ngIf="emptyLogin" class = "alert message">one or more fields are empty!</p>
             </div>
         </form>
     </div>

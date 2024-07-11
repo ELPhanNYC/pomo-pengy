@@ -13,7 +13,7 @@
     a:hover{
         color:white;
     }
-    height: 32rem;
+    height: auto;
     width: auto;
     max-width: 30rem;
     
@@ -21,6 +21,7 @@
     margin-bottom: 7rem;
     background-color: #1B1A55;
     border-radius: 30px;
+    padding-bottom: 2rem;
 }
 
 .form-input {
@@ -61,4 +62,9 @@
 }
 .submit-button:hover {
     background-color: #9290C3;
+}
+
+.message {
+    font-size: 0.75rem;
+    color: red;
 }

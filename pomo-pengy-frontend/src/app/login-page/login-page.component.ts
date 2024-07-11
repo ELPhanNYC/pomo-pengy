@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginInterface } from '../login-interface';
 import { fadeInAnimation } from 'src/assets/animations/animations';
 
@@ -14,8 +15,12 @@ import { supervisor } from '../storage-supervisor.service';
 })
 export class LoginPageComponent {
 
-  email: string = ''
-  password: string = ''
+  formLogin = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+  });
+
+
   failedLogin = false;
   emptyLogin = false;
 
@@ -23,15 +28,36 @@ export class LoginPageComponent {
 
   }
 
-  postToDB(){
+  get email() {
+    return this.formLogin.get('email');
+  }
 
-    if (this.email == "" || this.password == ""){
+  get password() {
+    return this.formLogin.get('password');
+  }
+
+  getEmail() {
+    return this.formLogin.get('email')?.value || '';
+  }
+
+  getPassword() {
+    return this.formLogin.get('password')?.value || '';
+  }
+
+  postToDB(event: Event){
+
+    event.preventDefault();
+
+    if (this.formLogin.invalid) {
       this.emptyLogin = true;
-    } 
+    }
     else {
+
+      this.emptyLogin = false;
+
       const payload = {
-        email: this.email,
-        password: this.password
+        email: this.getEmail(),
+        password: this.getPassword()
       };
       
       this.apiService.sendLogin(payload)
@@ -42,8 +68,8 @@ export class LoginPageComponent {
           this.router.navigate(['/']);
         }, error => {
           this.failedLogin = true;
-        });
+      });
     }
-  }
-
+  }   
 }
+

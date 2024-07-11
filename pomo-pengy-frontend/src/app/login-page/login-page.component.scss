@@ -13,7 +13,7 @@
     a:hover{
         color:white;
     }
-    height: 27.5rem;
+    height: auto;
     width: auto;
     max-width: 30rem;
     
@@ -21,6 +21,7 @@
     margin-bottom: 7rem;
     background-color: #1B1A55;
     border-radius: 30px;
+    padding-bottom: 2rem;
 }
 
 .form-input {
@@ -54,14 +55,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: none;
     // Figma-like Drop Shadow
     color: white;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin: 0 auto; /* Horizontally centers the div */
 }
+
 .submit-button:hover {
     background-color: #9290C3;
 }
+
 .message {
     font-size: 0.75rem;
     color: red;

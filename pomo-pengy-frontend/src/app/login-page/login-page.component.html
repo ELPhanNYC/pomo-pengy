@@ -6,6 +6,10 @@
             <input type="text" id="email" placeholder="email" name="email" [(ngModel)]="email"><br>
             <input type="password" id="password" placeholder="password" name="password" [(ngModel)]="password"><br>
             <div class="submit-button" (click)="postToDB()">login</div>
+            <div class ="error-messages">
+                <p *ngIf="failedLogin" class = "message">your email or password is incorrect, please try again!</p>
+                <p *ngIf="emptyLogin" class = "message">one or more fields are empty!</p>
+            </div>
         </form>
     </div>
     <h4>don't have an account? <a routerLink="/register">register</a></h4>

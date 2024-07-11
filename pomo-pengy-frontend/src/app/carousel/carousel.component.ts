@@ -136,9 +136,6 @@ export class CarouselComponent implements OnInit{
 
   ngOnInit() {
       this.getStats();
-      // console.log(this.stats)
-      // this.setStatus(this.stats);
-      console.log(this.achievement_badges)
   }
 
   getStats() {
@@ -154,13 +151,9 @@ export class CarouselComponent implements OnInit{
   }
 
   setStatus(statistics: any) {
-    console.log(statistics);
     const timeStudy = statistics["study time"];
     const sessions = statistics["number of sessions completed"];
     const numTask = statistics["number of completed tasks"];
-    console.log(timeStudy);
-    console.log(sessions);
-    console.log(numTask);
     if(sessions >= 1){
       this.achievement_badges[0].status = "active"
     }

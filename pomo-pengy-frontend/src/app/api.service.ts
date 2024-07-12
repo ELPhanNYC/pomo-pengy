@@ -21,7 +21,7 @@ export class ApiService {
   url: string = "https://seashell-app-uarvh.ondigitalocean.app/"; // http://localhost:8080/
 
   sendRegister(data: { username: string; email: string; password: string }) {
-    return this.http.post("${this.url}api/register", data);
+    return this.http.post(`${this.url}api/register`, data);
   }
 
   sendLogin(data: { email: string; password: string }) {
@@ -37,7 +37,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.post("${this.url}api/postTask", data, {
+      return this.http.post(`${this.url}api/postTask`, data, {
         headers,
       });
     }
@@ -52,7 +52,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.get("${this.url}api/getTasks", { headers });
+      return this.http.get(`${this.url}api/getTasks`, { headers });
     }
     // return an empty object
     return new Observable<Object>();
@@ -65,7 +65,7 @@ export class ApiService {
         authorization: token,
       });
       const params = new HttpParams().set("title", data.title);
-      return this.http.delete("${this.url}api/removeTask", {
+      return this.http.delete(`${this.url}api/removeTask`, {
         headers,
         params,
       });
@@ -80,7 +80,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.patch("${this.url}api/patchTask", data, {
+      return this.http.patch(`${this.url}api/patchTask`, data, {
         headers,
       });
     }
@@ -95,7 +95,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.get("${this.url}api/sendStats", { headers });
+      return this.http.get(`${this.url}api/sendStats`, { headers });
     }
     return new Observable<Object>();
   }
@@ -106,7 +106,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.post("${this.url}api/endSession", data, {
+      return this.http.post(`${this.url}api/endSession`, data, {
         headers,
       });
     }
@@ -121,7 +121,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.get("${this.url}api/getRanking", { headers });
+      return this.http.get(`${this.url}api/getRanking`, { headers });
     }
     return new Observable<Object>();
   }

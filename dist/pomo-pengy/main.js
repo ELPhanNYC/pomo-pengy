@@ -266,7 +266,7 @@ class ApiService {
     return this.http.post(`${this.url}api/register`, data);
   }
   sendLogin(data) {
-    return this.http.post("${this.url}api/login", data);
+    return this.http.post(`${this.url}api/login`, data);
   }
   sendTask(data) {
     const token = _storage_supervisor_service__WEBPACK_IMPORTED_MODULE_0__.supervisor.getItem("token");

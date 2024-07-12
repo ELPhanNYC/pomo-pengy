@@ -26,7 +26,7 @@ export class ApiService {
 
   sendLogin(data: { email: string; password: string }) {
     return this.http.post<LoginInterface>(
-      "${this.url}api/login",
+      `${this.url}api/login`,
       data,
     );
   }

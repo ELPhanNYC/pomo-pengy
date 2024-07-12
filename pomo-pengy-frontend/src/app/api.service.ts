@@ -18,13 +18,15 @@ import { supervisor } from "./storage-supervisor.service";
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  url: string = "https://seashell-app-uarvh.ondigitalocean.app/"; // http://localhost:8080/
+
   sendRegister(data: { username: string; email: string; password: string }) {
-    return this.http.post("http://localhost:8080/api/register", data);
+    return this.http.post("${this.url}api/register", data);
   }
 
   sendLogin(data: { email: string; password: string }) {
     return this.http.post<LoginInterface>(
-      "http://localhost:8080/api/login",
+      "${this.url}api/login",
       data,
     );
   }
@@ -35,7 +37,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.post("http://localhost:8080/api/postTask", data, {
+      return this.http.post("${this.url}api/postTask", data, {
         headers,
       });
     }
@@ -50,7 +52,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.get("http://localhost:8080/api/getTasks", { headers });
+      return this.http.get("${this.url}api/getTasks", { headers });
     }
     // return an empty object
     return new Observable<Object>();
@@ -63,7 +65,7 @@ export class ApiService {
         authorization: token,
       });
       const params = new HttpParams().set("title", data.title);
-      return this.http.delete("http://localhost:8080/api/removeTask", {
+      return this.http.delete("${this.url}api/removeTask", {
         headers,
         params,
       });
@@ -78,7 +80,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.patch("http://localhost:8080/api/patchTask", data, {
+      return this.http.patch("${this.url}api/patchTask", data, {
         headers,
       });
     }
@@ -93,7 +95,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.get("http://localhost:8080/api/sendStats", { headers });
+      return this.http.get("${this.url}api/sendStats", { headers });
     }
     return new Observable<Object>();
   }
@@ -104,7 +106,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.post("http://localhost:8080/api/endSession", data, {
+      return this.http.post("${this.url}api/endSession", data, {
         headers,
       });
     }
@@ -119,7 +121,7 @@ export class ApiService {
       const headers = new HttpHeaders({
         authorization: token,
       });
-      return this.http.get("http://localhost:8080/api/getRanking", { headers });
+      return this.http.get("${this.url}api/getRanking", { headers });
     }
     return new Observable<Object>();
   }

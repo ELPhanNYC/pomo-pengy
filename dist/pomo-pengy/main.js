@@ -260,12 +260,13 @@ __webpack_require__.r(__webpack_exports__);
 class ApiService {
   constructor(http) {
     this.http = http;
+    this.url = "https://seashell-app-uarvh.ondigitalocean.app/"; // http://localhost:8080/
   }
   sendRegister(data) {
-    return this.http.post("http://localhost:8080/api/register", data);
+    return this.http.post("${this.url}api/register", data);
   }
   sendLogin(data) {
-    return this.http.post("http://localhost:8080/api/login", data);
+    return this.http.post("${this.url}api/login", data);
   }
   sendTask(data) {
     const token = _storage_supervisor_service__WEBPACK_IMPORTED_MODULE_0__.supervisor.getItem("token");
@@ -273,7 +274,7 @@ class ApiService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({
         authorization: token
       });
-      return this.http.post("http://localhost:8080/api/postTask", data, {
+      return this.http.post("${this.url}api/postTask", data, {
         headers
       });
     }
@@ -287,7 +288,7 @@ class ApiService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({
         authorization: token
       });
-      return this.http.get("http://localhost:8080/api/getTasks", {
+      return this.http.get("${this.url}api/getTasks", {
         headers
       });
     }
@@ -301,7 +302,7 @@ class ApiService {
         authorization: token
       });
       const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set("title", data.title);
-      return this.http.delete("http://localhost:8080/api/removeTask", {
+      return this.http.delete("${this.url}api/removeTask", {
         headers,
         params
       });
@@ -315,7 +316,7 @@ class ApiService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({
         authorization: token
       });
-      return this.http.patch("http://localhost:8080/api/patchTask", data, {
+      return this.http.patch("${this.url}api/patchTask", data, {
         headers
       });
     }
@@ -329,7 +330,7 @@ class ApiService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({
         authorization: token
       });
-      return this.http.get("http://localhost:8080/api/sendStats", {
+      return this.http.get("${this.url}api/sendStats", {
         headers
       });
     }
@@ -341,7 +342,7 @@ class ApiService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({
         authorization: token
       });
-      return this.http.post("http://localhost:8080/api/endSession", data, {
+      return this.http.post("${this.url}api/endSession", data, {
         headers
       });
     }
@@ -355,7 +356,7 @@ class ApiService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({
         authorization: token
       });
-      return this.http.get("http://localhost:8080/api/getRanking", {
+      return this.http.get("${this.url}api/getRanking", {
         headers
       });
     }

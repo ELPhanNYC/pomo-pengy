@@ -7,7 +7,7 @@
             <input type="text" id="username" name ="username" placeholder="username" formControlName="username"><br>
             <input type="{{passwordStatus}}" id="password" name="password" placeholder="password (min. 8 characters)" formControlName="password"><br>
             <input type="{{passwordStatus}}" id="passwordConfirm" name="passwordConfirm" placeholder="confirm password" formControlName="passwordConfirm"><br>
-            <input type="checkbox" (change)="passwordToggle()" formControlName="toggle"> show password
+            <input type="checkbox" id="toggle" (change)="passwordToggle()" formControlName="toggle"> show password
             <div class="submit-button" (click)="postToDB($event)">register</div>
             <div class = "message">
                 <p *ngIf="formStatus">one or more fields are empty/incorrectly filled!</p>

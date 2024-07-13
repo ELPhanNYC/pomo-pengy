@@ -29,7 +29,7 @@
     margin: 0 auto; /* Horizontally centers the div */
 }
 
-#email, #username, #password{
+#email, #username, #password, #passwordConfirm{
     // height: 2.5rem;
     width: 20rem;
     margin-bottom: 1rem;
@@ -39,9 +39,13 @@
     font-size: 1rem
 }
 
-#email:focus, #password:focus {
+#email:focus, #username:focus, #password:focus,  #passwordConfirm:focus{
     border-color: #9290C3; /* Changes the border color on focus */
     outline: none; /* Removes the default outline */
+}
+
+#toggle {
+    margin-bottom: 1rem;
 }
 
 .submit-button {

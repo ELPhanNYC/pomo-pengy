@@ -18,12 +18,16 @@ export class RegisterPageComponent implements OnInit{
     this.formRegister = new FormGroup({
         username: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.minLength(8), this.complexityValidator()])
+        password: new FormControl('', [Validators.required, Validators.minLength(8), this.complexityValidator()]),
+        passwordConfirm: new FormControl('', [Validators.required]),
+        toggle: new FormControl()
     });
   }
-  
 
   formStatus = false;
+  matchStatus = true;
+
+  passwordStatus = "password"
 
   constructor( private apiService: ApiService, private router: Router) {
 
@@ -53,6 +57,18 @@ export class RegisterPageComponent implements OnInit{
     return this.formRegister.get("password")?.value|| '';
   }
 
+  getConfirmedPassword() {
+    return this.formRegister.get("passwordConfirm")?.value|| '';
+  }
+
+  getToggle() {
+    return this.formRegister.get("toggle")?.value;
+  }
+
+  passwordToggle() {
+    this.passwordStatus = this.getToggle() ? "text" : "password";
+  }
+
   postToDB(event: Event){
 
     event.preventDefault()
@@ -60,9 +76,15 @@ export class RegisterPageComponent implements OnInit{
     if(this.formRegister.invalid) {
       this.formStatus = true;
     }
+
+    if(this.getConfirmedPassword() != this.getPassword()) {
+      this.matchStatus = false;
+    }
+
     else {
 
       this.formStatus = false;
+      this.matchStatus = true;
 
       const payload = {
         email: this.getEmail(),

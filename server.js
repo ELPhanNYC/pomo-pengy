@@ -131,16 +131,11 @@ app.post("/api/login", async (req, res) => {
 
     const username = user.username;
 
-    // Check if existing account has a stat object, if not create one
+    const now = new Date();
+    const dateOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
     const stat = await Stats.findOne({ username });
     if (!stat) {
-      const now = new Date();
-      const dateOnly = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-      );
-
       const newStat = new Stats({
         username: username,
         timeStudy: 0,
@@ -154,30 +149,23 @@ app.post("/api/login", async (req, res) => {
       });
       await newStat.save();
     } else {
-      const now = new Date();
-      const dateOnly = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-      );
+      const lastActive = new Date(stat.lastDateOnline);
+      const diff = Math.floor((now - lastActive) / (1000 * 60 * 60 * 24));
 
       const updateStat = {
         activeDays: stat.activeDays + 1,
         lastDateOnline: dateOnly,
       };
-      const lastActive = new Date(stat.lastDateOnline);
-      const diff =
-        now -
-        lastActive /* Gets the difference in ms */ /
-          (1000 * 60 * 60 * 24); /* Converts to days */
+
       if (diff === 1) {
         updateStat.streak = stat.streak + 1;
         if (updateStat.streak > stat.longestStreak) {
           updateStat.longestStreak = updateStat.streak;
         }
-      } else if (diff < 1) {
+      } else if (diff > 1) {
         updateStat.streak = 1;
       }
+
       await Stats.findOneAndUpdate({ username }, updateStat);
     }
 
@@ -196,6 +184,7 @@ app.post("/api/login", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 app.post("/api/register", async (req, res) => {
   const { username, email, password } = req.body;

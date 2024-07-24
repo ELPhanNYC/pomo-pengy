@@ -260,8 +260,9 @@ __webpack_require__.r(__webpack_exports__);
 class ApiService {
   constructor(http) {
     this.http = http;
-    this.url = "https://seashell-app-uarvh.ondigitalocean.app/"; /*"http://localhost:8080/";*/
+    this.url = "http://localhost:8080/";
   }
+  // url: string = "https://seashell-app-uarvh.ondigitalocean.app/";
   sendRegister(data) {
     return this.http.post(this.url + "api/register", data);
   }

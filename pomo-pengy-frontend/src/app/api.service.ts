@@ -18,7 +18,8 @@ import { supervisor } from "./storage-supervisor.service";
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  url: string = "https://seashell-app-uarvh.ondigitalocean.app/";  /*"http://localhost:8080/";*/
+  url: string = "http://localhost:8080/";
+  // url: string = "https://seashell-app-uarvh.ondigitalocean.app/";
 
   sendRegister(data: { username: string; email: string; password: string }) {
     return this.http.post(this.url + "api/register", data);
